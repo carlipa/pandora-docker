@@ -1,6 +1,6 @@
 {
   "name": "@carlipa/pandora-docker",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0",
   "description": "Pandora Docker",
   "main": "lib/index.js",
   "scripts": {
