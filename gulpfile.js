@@ -57,16 +57,9 @@ const watchScriptsTaskFactory = (folder) => {
   };
 };
 
-const copyDockerfiles = (folder) => {
-  return () => gulp.src(['src/*/dockerfiles/**/*'], { cwd: folder })
-    .pipe(rename((file) => file.dirname))
-    .pipe(gulp.dest('lib'));
-};
-
 gulp.task('clean', cleanTaskFactory('.'));
 gulp.task('build:no-test', buildScriptsTaskFactory('.'));
 gulp.task('watch', watchScriptsTaskFactory('.'));
-gulp.task('copyDockerfiles', copyDockerfiles('.'));
 
-gulp.task('build', gulp.series('clean', 'build:no-test', 'copyDockerfiles'));
+gulp.task('build', gulp.series('clean', 'build:no-test'));
 gulp.task('serve', gulp.series('build', 'watch'));
