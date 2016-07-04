@@ -4,12 +4,13 @@
   "description": "Pandora Docker",
   "main": "lib/index.js",
   "scripts": {
-    "start": "$(npm bin)/gulp serve",
-    "build": "$(npm bin)/gulp build",
+    "start": "gulp serve",
+    "compile": "gulp build",
     "test": "npm run test:lint && npm run test:mocha",
     "test:lint": "$(npm bin)/eslint src",
     "test:mocha": "NODE_ENV=test node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill 'src/**/__tests__/*.js' ",
-    "test:coverage": "NODE_ENV=test $(npm bin)/babel-node $(npm bin)/isparta cover ./node_modules/mocha/bin/_mocha -- 'src/**/__tests__/*.js'"
+    "test:coverage": "NODE_ENV=test $(npm bin)/babel-node $(npm bin)/isparta cover ./node_modules/mocha/bin/_mocha -- 'src/**/__tests__/*.js'",
+    "prepublish": "npm run compile"
   },
   "engines": {
     "node": ">=4.3"
