@@ -9,6 +9,7 @@ import { each } from 'lodash';
 
 export default class PandoraDocker {
   _docker = null;
+  _socketPath = null;
 
   /**
    * Pandora Docker Constructor
@@ -22,6 +23,8 @@ export default class PandoraDocker {
     try {
       if (fs.statSync(socket).isSocket()) {
         this._docker = promisifyAll(new Docker({ socketPath: socket }));
+        // If the connection using the socket is successful, keep its path
+        this._socketPath = socket;
       }
     } catch (err) {
       if (err.code === 'ENOENT') {
@@ -55,6 +58,10 @@ export default class PandoraDocker {
 
   getDocker () {
     return this._docker;
+  }
+
+  getSocketPath () {
+    return this._socketPath;
   }
 
   /**
